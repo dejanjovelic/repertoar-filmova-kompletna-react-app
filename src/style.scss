@@ -1,0 +1,19 @@
+img{
+    width: 105px;
+    height: 150px;
+}
+
+.image, .movie-data{
+    display: inline-block;
+    vertical-align: middle;
+}
+.movie-container{
+    margin: 20px;
+}
+.button-section{
+    display: flex;
+    justify-content: space-between;
+}
+p{
+    margin-left: 10px;
+}
