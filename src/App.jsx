@@ -3,7 +3,6 @@ import Movie from "./Movie";
 import "./style.scss";
 import { useState } from "react";
 import MovieForm from "./MovieForm";
-import EditMovieForm from "./EditMovieForm";
 
 const App = () => {
 
@@ -39,10 +38,11 @@ const App = () => {
       <h1>Repertoar za danas ({getFormatedDate()})</h1>
       <div>
         {editingMovie ? (
-          <EditMovieForm
+          <MovieForm
             movie={editingMovie}
-            onUpdate={editMovie} />
+            onSubmit={editMovie} />
         ) : (
+
           movies.map((movie) => (
             <Movie
               key={movie.title}
@@ -53,15 +53,12 @@ const App = () => {
               onEdit={() => setEditingMovie(movie)}
             />
           ))
-
         )}
 
       </div>
       <br />
       {
-        editingMovie === null && (
-          <MovieForm onSubmit={addNewMovie} />
-        )
+        editingMovie === null && <MovieForm onSubmit={addNewMovie} />
       }
 
     </div>
