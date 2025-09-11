@@ -1,45 +1,34 @@
 import React from "react";
 import logo from "./assets/logo.jpg";
 import "./style.scss";
-import { useState } from "react";
 
-const Movie = ({ title, cinemaHall, price, poster, onEdit }) => {
 
-    const [likes, setLikes] = useState(0);
-    const [dislikes, setDislikes] = useState(0);
-
-    const onLike = () => {
-        setLikes((prev) => prev + 1);
-    }
-
-    const onDislikes = () => {
-        setDislikes((prev) => prev + 1)
-    }
-
+const Movie = ({ title, cinemaHall, price, poster, like, dislike, onEdit, onLike, onDislike }) => {
 
     return (
 
-        <div className="movie-container">
+        <div className="movie-card">
 
             <div className="image">
                 <img src={poster} alt="Poster" />
 
                 <div className="button-section">
-                    <button onClick={onLike}>Like</button>
-                    <button onClick={onDislikes}>Dislike</button>
+                    <button onClick={() => onLike(title)}>Like</button>
+                    <button onClick={() => onDislike(title)}>Dislike</button>
                 </div>
-                <div>
-                    <button onClick={onEdit}>Edit</button>
-                </div>
-
 
             </div>
 
             <div className="movie-data">
-                <p>{title}, sala: {cinemaHall}, cena: {price}din</p>
-                <p>Like: {likes}</p>
-                <p>Dislike: {dislikes}</p>
+                <h2>{title}, sala: {cinemaHall}, cena: {price}din</h2>
+                <p>👍 {like}</p>
+                <p>👎 {dislike}</p>
+
+                <div className="editBtn-container">
+                    <button className="editBtn" onClick={onEdit}>Edit</button>
+                </div>
             </div>
+
 
         </div>
     )

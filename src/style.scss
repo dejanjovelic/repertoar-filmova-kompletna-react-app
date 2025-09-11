@@ -1,21 +1,81 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #191919;
+    color: white;
+}
+
+#root {
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container {
+    flex: 1;
+}
+
 img {
-    width: 105px;
-    height: 150px;
+    width: 120px;
+    height: 180px;
+    border-top-left-radius: 10px;
 }
 
-.image,
-.movie-data {
-    display: inline-block;
-    vertical-align: middle;
+.image {
+    flex-shrink: 0;
+
 }
 
-.movie-container {
-    margin: 20px;
+.movie-card {
+    margin: 10px;
+    border: 1px solid white;
+    width: 800px;
+    border-radius: 10px;
+    display: flex;
+    height: 250px;
+    background-color: #2d2d2d;
+
 }
 
 .button-section {
     display: flex;
     justify-content: space-between;
+    padding: 5px;
+}
+
+.movie-data {
+    margin: 0 0 20px 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
+
+}
+
+.movies-container {
+    padding: 30px;
+    flex: 1;
+}
+
+button {
+    border-radius: 5px;
+    background-color: #2d2d2d;
+    color: white;
+    border: 1px solid lightgray;
+    padding: 7px;
+}
+
+#addBtn {
+    margin-left: 35px;
+    width: 100px;
+}
+
+.editBtn {
+    width: 100px;
+    margin-bottom: 5px;
 }
 
 p {
@@ -24,13 +84,25 @@ p {
 
 .form-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 
     form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         width: 60%;
         border: 1px solid black;
         border-radius: 10px;
-        padding: 10px;
+        padding: 30px;
+        background-color: #2d2d2d;
+
+        label,
+        input,
+        button {
+            padding-bottom: 10px;
+        }
 
         label {
             display: inline-block;
@@ -46,9 +118,117 @@ p {
         }
 
         button {
-            margin-top: 10px;
+            margin-top: 20px;
+            width: 100px;
+        }
+
+        h3 {
+            margin: 0;
         }
 
     }
 
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    background-color: #2d2d2d;
+    height: 4vh;
+
+    a {
+        text-decoration: none;
+        color: white;
+        font-size: large;
+    }
+}
+
+h1 {
+    margin: 0;
+    padding: 10px;
+    padding-left: 35px;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    background-color: #2d2d2d;
+    height: 3vh;
+    padding: 10px;
+}
+
+#information-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    #sound,
+    #picture,
+    #comfort {
+        width: 45%;
+        display: flex;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        margin-bottom: 15px;
+    }
+
+    #info {
+
+        display: flex;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        margin-bottom: 15px;
+
+    }
+
+}
+
+.main-container-about {
+    flex: 1;
+    background-image: url("https://claptery.com/uploads/images/sizeoriginalx540/qQplEc4vWtmgPw2uNEqL.jpg");
+    background-size: cover;
+}
+
+.main-container-home {
+    flex: 1;
+    background-image: url("https://betonicvet.com/wp-content/uploads/2016/05/arena-01.jpg");
+    background-size: cover;
+}
+
+#home-title {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+#main-home-picture {
+    margin-bottom: 30px;
+
+    .home-poster {
+        width: 100%;
+        height: 700px;
+    }
+}
+
+#small-home-pictures {
+    display: flex;
+    justify-content: center;
+}
+
+.home-page-pictures {
+    display: flex;
+    flex-wrap: wrap;
+    gap:200px;
+    justify-content: center;
+    padding: 20px;
+
+    img {
+        width: 200px;
+        height: 200px;
+        border-radius: 10px;
+        object-fit: cover;
+    }
 }

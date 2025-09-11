@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function MovieForm({ onSubmit, movie }) {
 
@@ -20,14 +21,31 @@ function MovieForm({ onSubmit, movie }) {
         }
     );
 
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        navigate('/movies')
+    }
+
+    useEffect(() => {
+        if (movie) {
+            reset(movie);
+        }
+    }, [movie, reset]);
+
     const onFormSubmit = (data) => {
         console.log(data)
-        onSubmit(data)
+        onSubmit(data);
         reset();
+        handleClick();
     }
+
+
     return (
         <div className="form-container">
+            
             <form onSubmit={handleSubmit(onFormSubmit)}>
+                <h1>{movie? (<h3>Edit movie form</h3>):(<h3>Add new movie form</h3>)}</h1>
                 <label>Naziv:</label>
                 <input type="text" {...register('title', { required: "Title is required." })} />
                 {formState.errors.title && <span style={{ color: 'red' }}>{formState.errors.title.message}</span>}
