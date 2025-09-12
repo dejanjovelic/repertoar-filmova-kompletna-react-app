@@ -70,12 +70,17 @@ button {
 
 #addBtn {
     margin-left: 35px;
-    width: 100px;
+    width: 120px;
 }
+
 
 .editBtn {
     width: 100px;
     margin-bottom: 5px;
+}
+
+#submit-new-movie {
+    width: 150px;
 }
 
 p {
@@ -84,6 +89,7 @@ p {
 
 .form-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex: 1;
@@ -92,7 +98,7 @@ p {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 60%;
+        width: 40%;
         border: 1px solid black;
         border-radius: 10px;
         padding: 30px;
@@ -221,7 +227,7 @@ footer {
 .home-page-pictures {
     display: flex;
     flex-wrap: wrap;
-    gap:200px;
+    gap: 200px;
     justify-content: center;
     padding: 20px;
 
@@ -231,4 +237,51 @@ footer {
         border-radius: 10px;
         object-fit: cover;
     }
+}
+
+//SPINNER
+
+.spinner-wrapper {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+.spinner-text {
+    font-size: 18px;
+    color: #ffff;
+    font-weight: bold;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#success-message {
+    padding-top: 20px;
+    color: greenyellow;
+   font-weight: bold;
+}
+
+#error-message {
+    padding-top: 20px;
+    color: red;
+    font-weight: bold;
 }

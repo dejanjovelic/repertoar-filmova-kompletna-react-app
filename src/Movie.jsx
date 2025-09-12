@@ -1,9 +1,9 @@
 import React from "react";
-import logo from "./assets/logo.jpg";
 import "./style.scss";
+import MovieForm from "./MovieForm";
 
 
-const Movie = ({ title, cinemaHall, price, poster, like, dislike, onEdit, onLike, onDislike }) => {
+const Movie = ({ name, hall, price, poster, likes, dislikes, onEdit, onLike, onDislike }) => {
 
     return (
 
@@ -13,19 +13,20 @@ const Movie = ({ title, cinemaHall, price, poster, like, dislike, onEdit, onLike
                 <img src={poster} alt="Poster" />
 
                 <div className="button-section">
-                    <button onClick={() => onLike(title)}>Like</button>
-                    <button onClick={() => onDislike(title)}>Dislike</button>
+                    <button onClick={() => onLike(name)}>Like</button>
+                    <button onClick={() => onDislike(name)}>Dislike</button>
                 </div>
 
             </div>
 
             <div className="movie-data">
-                <h2>{title}, sala: {cinemaHall}, cena: {price}din</h2>
-                <p>👍 {like}</p>
-                <p>👎 {dislike}</p>
+                <h3>{name}, sala: {hall}, cena: {price} eur</h3>
+                <p>👍 {likes}</p>
+                <p>👎 {dislikes}</p>
 
                 <div className="editBtn-container">
                     <button className="editBtn" onClick={onEdit}>Edit</button>
+                    {console.log(onEdit)}
                 </div>
             </div>
 
