@@ -3,7 +3,7 @@ import "./style.scss";
 import MovieForm from "./MovieForm";
 
 
-const Movie = ({ name, hall, price, poster, likes, dislikes, onEdit, onLike, onDislike }) => {
+const Movie = ({ name, hall, price, poster, likes, dislikes, onEdit, onDelete,onLike, onDislike }) => {
 
     return (
 
@@ -13,8 +13,8 @@ const Movie = ({ name, hall, price, poster, likes, dislikes, onEdit, onLike, onD
                 <img src={poster} alt="Poster" />
 
                 <div className="button-section">
-                    <button onClick={() => onLike(name)}>Like</button>
-                    <button onClick={() => onDislike(name)}>Dislike</button>
+                    <button onClick={onLike}>Like</button>
+                    <button onClick={onDislike}>Dislike</button>
                 </div>
 
             </div>
@@ -24,9 +24,9 @@ const Movie = ({ name, hall, price, poster, likes, dislikes, onEdit, onLike, onD
                 <p>👍 {likes}</p>
                 <p>👎 {dislikes}</p>
 
-                <div className="editBtn-container">
+                <div className="edit-deleteBtn-container">
                     <button className="editBtn" onClick={onEdit}>Edit</button>
-                    {console.log(onEdit)}
+                    <button className="deleteBtn" onClick={onDelete}>Delete</button>
                 </div>
             </div>
 

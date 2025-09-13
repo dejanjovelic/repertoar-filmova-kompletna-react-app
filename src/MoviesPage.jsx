@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Movie from "./Movie";
 import { useNavigate } from "react-router-dom";
-import { getAllMovies } from "./services/movieService";
+import { addDislike, addLike, deleteMovie, getAllMovies } from "./services/movieService";
 import Spinner from "./Spinner";
 
 const MoviesPage = () => {
@@ -10,7 +10,7 @@ const MoviesPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
 
-    
+
     async function fetchMovies() {
         try {
             const movies = await getAllMovies();
@@ -33,19 +33,32 @@ const MoviesPage = () => {
         navigate(`/editMovie/${id}`);
     };
 
+    const handleDeleteClick = (id) => {
+        async function deleteMovieFromDatabase(id) {
+            try {
+                await deleteMovie(id);
+                setMovies(movies.filter(movie => movie.id !== id))
+            } catch (error) {
+                setErrorMessage("Brisanje nije uspelo.")
+            }
+        }
+        deleteMovieFromDatabase(id);
+        navigate(`/movies`);
+    };
+
 
     const sortMovies = (arr) =>
         [...arr].sort(
-            (a, b) => (b.like - b.dislike) - (a.like - a.dislike)
+            (a, b) => (b.likes - b.dislikes) - (a.likes - a.dislikes)
         )
 
     useEffect(() => {
         console.log('Setting movies.')
         setIsLoading(true);
         try {
-            setTimeout(() => { 
-                fetchMovies(); 
-                setIsLoading(false) 
+            setTimeout(() => {
+                fetchMovies();
+                setIsLoading(false)
             }, 1000);
 
         } catch (error) {
@@ -57,8 +70,8 @@ const MoviesPage = () => {
                     setErrorMessage("Greska:", error.response.status)
                 }
             }
-            else if(error.request){
-                 setErrorMessage('Nema odgovora sa servera.');
+            else if (error.request) {
+                setErrorMessage('Nema odgovora sa servera.');
             }
             console.error(`Greska: ${error.message}`)
         }
@@ -71,18 +84,26 @@ const MoviesPage = () => {
     }, []);
 
 
-    const handleLike = (name) => {
-        setMovies(prev =>
-            sortMovies(prev.map(movie =>
-                movie.name === name ? { ...movie, like: movie.like + 1 } : movie
-            )))
+    const handleLike = (id) => {
+        async function likedMovie() {
+            await addLike(id);
+            setMovies(prev =>
+                sortMovies(prev.map(movie =>
+                    movie.id === id ? { ...movie, likes: movie.likes + 1 } : movie
+                )))
+        }
+        likedMovie();
     };
 
-    const handleDislike = (name) => {
-        setMovies(prev =>
-            sortMovies(prev.map(movie =>
-                movie.name === name ? { ...movie, dislike: movie.dislike + 1 } : movie
-            )))
+    const handleDislike = (id) => {
+        async function dislikedMovie() {
+            await addDislike(id);
+            setMovies(prev =>
+                sortMovies(prev.map(movie =>
+                    movie.id === id ? { ...movie, dislikes: movie.dislikes + 1} : movie
+                )))
+        }
+        dislikedMovie();
     };
 
 
@@ -107,9 +128,10 @@ const MoviesPage = () => {
                         poster={movie.poster}
                         likes={movie.likes}
                         dislikes={movie.dislikes}
-                        onLike={() => handleLike(movie.name)}
-                        onDislike={() => handleDislike(movie.name)}
+                        onLike={() => handleLike(movie.id)}
+                        onDislike={() => handleDislike(movie.id)}
                         onEdit={() => handleEditClick(movie.id)}
+                        onDelete={() => handleDeleteClick(movie.id)}
                     />
 
                 ))}

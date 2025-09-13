@@ -76,7 +76,19 @@ button {
 
 .editBtn {
     width: 100px;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    margin-right: 50px;
+}
+
+.deleteBtn{
+   margin-right: 30px;
+    margin-bottom: 7px;
+   width: 100px;
+}
+
+.edit-deleteBtn-container{
+    display: flex;
+    justify-content: flex-end;
 }
 
 #submit-new-movie {
@@ -285,3 +297,4 @@ footer {
     color: red;
     font-weight: bold;
 }
+
