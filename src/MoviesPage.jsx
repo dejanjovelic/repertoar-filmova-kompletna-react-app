@@ -86,22 +86,32 @@ const MoviesPage = () => {
 
     const handleLike = (id) => {
         async function likedMovie() {
-            await addLike(id);
-            setMovies(prev =>
-                sortMovies(prev.map(movie =>
-                    movie.id === id ? { ...movie, likes: movie.likes + 1 } : movie
-                )))
+            try {
+                await addLike(id);
+                setMovies(prev =>
+                    sortMovies(prev.map(movie =>
+                        movie.id === id ? { ...movie, likes: movie.likes + 1 } : movie
+                    )))
+            } catch (error) {
+                setErrorMessage("Greska pri dodavanja lajka filmu.")
+                console.log(`Error:`, error)
+            }
         }
         likedMovie();
     };
 
     const handleDislike = (id) => {
         async function dislikedMovie() {
-            await addDislike(id);
-            setMovies(prev =>
-                sortMovies(prev.map(movie =>
-                    movie.id === id ? { ...movie, dislikes: movie.dislikes + 1} : movie
-                )))
+            try {
+                await addDislike(id);
+                setMovies(prev =>
+                    sortMovies(prev.map(movie =>
+                        movie.id === id ? { ...movie, dislikes: movie.dislikes + 1} : movie
+                    )))
+            } catch (error) {
+                setErrorMessage("Greska pri dodavanja dislajka filmu.")
+                console.log(`Error:`, error)
+            }
         }
         dislikedMovie();
     };
