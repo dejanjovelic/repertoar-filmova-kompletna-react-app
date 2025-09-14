@@ -49,7 +49,6 @@ export async function addLike(id) {
 export async function addDislike(id) {
     const response = await AxiosConfig.put(`${resource}/${id}/dislike`,{
         header: {'Content-Type':'application.json'
-
         }
     })
      return response.data; 

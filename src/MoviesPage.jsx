@@ -88,13 +88,12 @@ const MoviesPage = () => {
         async function likedMovie() {
             try {
                 await addLike(id);
-                setMovies(prev =>
-                    sortMovies(prev.map(movie =>
-                        movie.id === id ? { ...movie, likes: movie.likes + 1 } : movie
-                    )))
+                const updatedMovies = await getAllMovies();
+                setMovies(sortMovies(updatedMovies));
             } catch (error) {
-                setErrorMessage("Greska pri dodavanja lajka filmu.")
+                setErrorMessage("Greska pri dodavanja lajka filmu.");
                 console.log(`Error:`, error)
+                setTimeout(()=>{setErrorMessage('')},1000) 
             }
         }
         likedMovie();
@@ -104,13 +103,12 @@ const MoviesPage = () => {
         async function dislikedMovie() {
             try {
                 await addDislike(id);
-                setMovies(prev =>
-                    sortMovies(prev.map(movie =>
-                        movie.id === id ? { ...movie, dislikes: movie.dislikes + 1} : movie
-                    )))
+                const updatedMovies = await getAllMovies();
+                setMovies(sortMovies(updatedMovies));
             } catch (error) {
                 setErrorMessage("Greska pri dodavanja dislajka filmu.")
                 console.log(`Error:`, error)
+                setTimeout(()=>{setErrorMessage('')},1000) 
             }
         }
         dislikedMovie();

@@ -19,6 +19,7 @@ function MovieForm() {
         formState
     } = useForm(
         {
+            mode: "onChange",
             defaultValues: editMovie || {
                 name: '',
                 hall: '',
